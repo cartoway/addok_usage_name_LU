@@ -1,6 +1,9 @@
 import re
 
-black = ['à', 'di', 'au', 'aux', 'des', 'l', 'sous', 'et', 'du', 'les', 'd', 'lès', 'la', 'le', 'en', 'de', 'sur', 'saint', 'sainte']
+black = ['à', 'di', 'au', 'aux', 'des', 'l', 'sous', 'et', 'du', 'les', 'd', 'lès', 'la', 'le', 'en', 'de', 'sur', 'saint', 'sainte',
+# Luxembourg
+# -- nothing
+]
 
 # Adelans-et-le-Val-de-Bithaine -> Adelans-et-le-Val-de-Bithaine, adelans-et-le-val, adelans
 # Return full name first
@@ -30,6 +33,9 @@ def make_labels(helper, result):
     elif result.type in ['street', 'locality']:
       ret.extend(([result.name, result.postcode, city], [result.name, city, result.postcode], [result.name, result.postcode], [result.name, city]))
     elif result.type == 'housenumber':
+      # prepend house number
       ret.extend(([result.housenumber, result.name, result.postcode, city], [result.housenumber, result.name, city, result.postcode], [result.housenumber, result.name, result.postcode], [result.housenumber, result.name, city]))
+      # append house number
+      ret.extend(([result.name, result.housenumber, result.postcode, city], [result.name, result.housenumber, city, result.postcode], [result.name, result.housenumber, result.postcode], [result.name, result.housenumber, city]))
 
   result.labels.extend(list(map(lambda a: ' '.join(a), ret)))
