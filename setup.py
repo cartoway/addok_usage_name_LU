@@ -19,11 +19,11 @@ with open('requirements.txt', encoding='utf-8') as reqs:
     install_requires = [l for l in reqs.read().split('\n') if is_pkg(l)]
 
 setup(
-    name='addok_usage_name_BAN_FR',
+    name='addok_usage_name_LU',
     version=".".join(map(str, VERSION)),
     description="Addok plugin to support short city name as equal as full city name.",
     long_description=long_description,
-    url='https://github.com/Mapotempo/addok_usage_name_BAN_FR',
+    url='https://github.com/Mapotempo/addok_usage_name_LU',
     author='Frédéric Rodrigo',
     author_email='frederic@mapotempo.com',
     license='WTFPL',
@@ -40,10 +40,10 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    keywords='addok geocoding france plugin',
+    keywords='addok geocoding luxembourg plugin',
     packages=find_packages(exclude=['tests']),
     install_requires=install_requires,
     extras_require={'test': ['pytest']},
     include_package_data=True,
-    entry_points={'addok.ext': ['usage_name_BAN_FR=addok_usage_name_BAN_FR']},
+    entry_points={'addok.ext': ['usage_name_LU=addok_usage_name_LU']},
 )

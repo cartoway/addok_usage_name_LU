@@ -1,4 +1,4 @@
-# Addok usage_name_BAN_FR
+# Addok usage_name_LU
 
 [Addok](https://github.com/etalab/addok) plugin to support short city name as equal as full city name.
 
@@ -12,12 +12,12 @@ When you use the name of "Brive" in France you probably mean the city of "Brive-
 
 ## Configuration
 
-Add `addok_usage_name_BAN_FR.make_labels` in place of the default `addok.helpers.results.make_labels` or `addok_france.make_labels`.
+Add `addok_usage_name_LU.make_labels` in place of the default `addok.helpers.results.make_labels` or `addok_luxembourg.make_labels`.
 
 ```
 SEARCH_RESULT_PROCESSORS_PYPATHS = [
     ...
-    'addok_usage_name_BAN_FR.make_labels',
+    'addok_usage_name_LU.make_labels',
     ...
 ```
 
