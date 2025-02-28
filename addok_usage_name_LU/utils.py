@@ -27,15 +27,16 @@ def make_labels(helper, result):
 
   ret = []
   for city in subpart_generator(result.city):
-    # Most complet first
-    if result.type == 'municipality':
-      ret.extend(([result.postcode, city], [city, result.postcode], [result.postcode], [city]))
-    elif result.type in ['street', 'locality']:
-      ret.extend(([result.name, result.postcode, city], [result.name, city, result.postcode], [result.name, result.postcode], [result.name, city]))
-    elif result.type == 'housenumber':
-      # prepend house number
-      ret.extend(([result.housenumber, result.name, result.postcode, city], [result.housenumber, result.name, city, result.postcode], [result.housenumber, result.name, result.postcode], [result.housenumber, result.name, city]))
-      # append house number
-      ret.extend(([result.name, result.housenumber, result.postcode, city], [result.name, result.housenumber, city, result.postcode], [result.name, result.housenumber, result.postcode], [result.name, result.housenumber, city]))
+    for name in (result.name if isinstance(result.name, (tuple, list)) else [result.name]):
+      # Most complet first
+      if result.type == 'municipality':
+        ret.extend(([result.postcode, city], [city, result.postcode], [result.postcode], [city]))
+      elif result.type in ['street', 'locality']:
+        ret.extend(([name, result.postcode, city], [name, city, result.postcode], [name, result.postcode], [name, city]))
+      elif result.type == 'housenumber':
+        # prepend house number
+        ret.extend(([result.housenumber, name, result.postcode, city], [result.housenumber, name, city, result.postcode], [result.housenumber, name, result.postcode], [result.housenumber, name, city]))
+        # append house number
+        ret.extend(([name, result.housenumber, result.postcode, city], [name, result.housenumber, city, result.postcode], [name, result.housenumber, result.postcode], [name, result.housenumber, city]))
 
   result.labels.extend(list(map(lambda a: ' '.join(a), ret)))
